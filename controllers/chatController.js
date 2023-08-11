@@ -20,7 +20,7 @@ class ChatController {
         .json({ message: "something went wrong", success: false });
     try {
       const chat = await ChatModel.find({
-        users: { $in: [userId] },
+        "users.id": { $in: [userId] },
       })
         .sort({ updatedAt: -1 })
         .populate(["latestMessage"]);
