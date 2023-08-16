@@ -11,6 +11,7 @@ class MessageController {
       }
       // con
       let message = await MessageModel.create(req.body);
+      message = await message.populate("chatId");
 
       await ChatModel.findByIdAndUpdate(chatId, {
         latestMessage: message._doc._id,

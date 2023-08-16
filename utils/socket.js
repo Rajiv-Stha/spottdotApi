@@ -43,13 +43,17 @@ module.exports = (io) => {
     });
 
     socket.on("SEND_MESSAGE", (data) => {
-      console.log("sending message 1");
-      const { message, receiver_id, sender_id } = data;
-      const nextUser = getUser(receiver_id);
+      console.log("sending message 1", data);
+
+      const { message, senderId, receiverId } = data;
+
+      const nextUser = getUser(receiverId);
+      console.log("next user ", nextUser);
+
       if (!nextUser) return;
       const newMessage = {
         message,
-        sender_id,
+        senderId,
       };
       console.log("sending message 2 ", newMessage);
       io.to(nextUser.socketId).emit("GET_MESSAGE", newMessage);
