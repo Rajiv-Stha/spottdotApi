@@ -8,6 +8,8 @@ const messageSchema = mongoose.Schema(
     },
     text: String,
     sender: {},
+    type:String,
+    url:String,
   },
   { timestamps: true }
 );
