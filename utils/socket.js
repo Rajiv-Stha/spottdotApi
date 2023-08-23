@@ -32,8 +32,13 @@ module.exports = (io) => {
         // console.log()
       }
       console.log("online", onlineUsers);
-      socket.emit("GET_USERS", onlineUsers);
+      io.emit("GET_USERS", onlineUsers);
     });
+
+    socket.on("REQUEST_USERS",()=>{
+      socket.emit("RESPONSE_USERS",onlineUsers);
+
+    })
 
     socket.on("LEAVE", (userId) => {
       if (getUser(userId)) {
